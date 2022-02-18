@@ -12,10 +12,10 @@
 
   <div align="center">
 {% if element.cover.url %}
-  <img src="{{element.cover.url}}" onclick=window.location.href=`http://localhost:3000/platforms/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
+  <img src="{{element.cover.url}}" onclick=window.location.href=`http://localhost:3000/games/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
 {% else %}
   {# <h1>Il n'y a pas de photos</h1> #}
-  <img src="/images/logo.png" onclick=window.location.href=`http://localhost:3000/platforms/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
+  <img src="/images/logo.png" onclick=window.location.href=`http://localhost:3000/games/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
 {% endif %}
   </div>
 
@@ -31,8 +31,8 @@
 <nav aria-label="Page navigation example">
 
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href=`/games?page=1` tabindex="-1">Previous</a>
+    <li class="page-item">
+      <a class="page-link" href="/games?page=1" tabindex="-1">Previous</a>
     </li>
     <li class="page-item">
       <a class="page-link" href=`/games?page={{indexPage}}` >Next</a>
