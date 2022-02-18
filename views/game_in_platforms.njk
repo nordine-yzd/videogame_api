@@ -1,0 +1,25 @@
+{% extends "layout.njk" %}
+
+
+{% block content%}
+
+<ul>
+{% for element in games %}
+
+  <div align="left">
+	    <h3>{{ element.name }}</h3>
+  </div>
+
+  <div align="center">
+{% if element.cover.url %}
+  <img src="{{element.cover.url}}" onclick=window.location.href=`http://localhost:3000/games/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
+{% else %}
+  <img src="/images/cover.png" onclick=window.location.href=`http://localhost:3000/games/{{element.id}}` title="{{ element.name }}" alt="{{element.name}}">
+{% endif %}
+  </div>
+
+{% endfor %}
+</ul>
+
+{% endblock %}
+

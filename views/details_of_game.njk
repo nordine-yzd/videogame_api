@@ -1,0 +1,32 @@
+{% extends "layout.njk" %}
+
+{% block content%}
+
+  <div class="titre" align="center">
+      <h1>{{ details.name }}</h1>
+      <img src="{{details.cover.url}}" title="{{ element.name }}" alt="{{element.name}}">
+  </div>
+
+  <div class="support">
+    <h3>Supports</h3>
+    <nav>
+      {% for element in details.platforms %}
+        <ul>
+          <li>{{ element.name }}</li>
+        </ul>
+      {% endfor %}
+    </nav>
+  </div>
+
+  <div class="screen">
+    <h3>Screen</h3>
+    <nav>
+      {% for element in details.screenshots %}
+        <ul>
+          <li><img src="{{element.url}}" alt="{{element.url}}"></li>
+        </ul>
+      {% endfor %}
+    </nav>
+  </div>
+
+{% endblock %}
