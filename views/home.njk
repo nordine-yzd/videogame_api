@@ -1,0 +1,35 @@
+{% extends "layout.njk" %}
+
+
+{% block content%}
+
+<div class="container" ;>
+{# style="background-color:#FF0000;" #}
+<div align="center" class="shadow-lg p-3 mb-5 bg-white rounded"><h1>Welcome to Wiki Games</h1></div>
+
+<div align="center" class="shadow-lg p-3 mb-5 bg-white rounded"><h3>Platforms</h3></div>
+
+{# card contenant xbox  #}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/images/xbox.png" alt="Xbox">
+  <div class="card-body">
+    <h5 class="card-title">Xbox</h5>
+    <p class="card-text"> Discover the games of this platform.</p>
+    <a href="#" class="btn btn-primary">Go</a>
+  </div>
+</div>
+
+{# card contenant play  #}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/images/play.png" alt="Xbox">
+  <div class="card-body">
+    <h5 class="card-title">Playstation</h5>
+    <p class="card-text"> Discover the games of this platform.</p>
+    <a href="#" class="btn btn-primary">Go</a>
+  </div>
+</div>
+
+
+
+</div>
+{% endblock %}

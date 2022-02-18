@@ -23,7 +23,7 @@
     <nav>
       {% for element in details.screenshots %}
         <ul>
-          <li><img src="{{element.url}}" alt="{{element.url}}"></li>
+          <li><img src="{{element.url}}" alt="{{element.url}}" title="{{ element.name }}"></li>
         </ul>
       {% endfor %}
     </nav>

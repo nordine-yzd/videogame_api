@@ -14,12 +14,13 @@ app.use(express.static("public"));
 
 nunjucks.configure("views", { autoescape: true, express: app });
 
-//
+//page d'accueil
 
 app.get("/", (req, res) => {
-  res.send("Hello to my website");
+  res.render("home.njk");
 });
 
+//page de toutes les platforms
 app.get("/platforms", (req, res) => {
   const stringQuery = req.query;
   if (stringQuery.page) {
@@ -47,6 +48,7 @@ app.get("/platforms", (req, res) => {
   }
 });
 
+// page des jeux en fonction des platforms(id)
 app.get("/platforms/:id", (req, res) => {
   const slug = req.params;
   const stringQuery = req.query;
@@ -78,6 +80,7 @@ app.get("/platforms/:id", (req, res) => {
   }
 });
 
+//page des details d'un jeux grace a l'id
 app.get("/games/:id", (req, res) => {
   const slug = req.params;
   request(`https://videogame-api.fly.dev/games/${slug.id}`, (error, body) => {
@@ -89,6 +92,42 @@ app.get("/games/:id", (req, res) => {
     res.render("details_of_game.njk", { details: json });
   });
   // res.send("helloeeeee");
+});
+
+// tt les jeux
+app.get("/games", (req, res) => {
+  const stringQuery = req.query;
+  const re = JSON.stringify(stringQuery.page);
+  console.log(re);
+  const te = parseInt(re);
+  console.log(te);
+
+  if (stringQuery.page) {
+    request(
+      `http://videogame-api.fly.dev/games?page=${stringQuery.page}`,
+      (error, body) => {
+        if (error) {
+          throw error;
+        }
+        const json = JSON.parse(body);
+        console.log(json.games);
+        console.log(stringQuery);
+
+        res.render("games.njk", { games: json.games, indexPage: stringQuery });
+      }
+    );
+  } else {
+    request("http://videogame-api.fly.dev/games", (error, body) => {
+      if (error) {
+        throw error;
+      }
+      const json = JSON.parse(body);
+      console.log(json.games);
+      console.log(stringQuery);
+
+      res.render("games.njk", { games: json.games, indexPage: stringQuery });
+    });
+  }
 });
 
 //creation du serveur local
