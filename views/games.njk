@@ -1,7 +1,8 @@
 {% extends "layout.njk" %}
 
-
 {% block content%}
+
+
 
 <ul>
 {% for element in games %}
@@ -28,33 +29,59 @@
 {# </div> #}
 
 {% if queryStr.page %}
-<nav aria-label="Page navigation example">
-
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="/games?page=1" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href=`/games?page={{indexPage}}` >Next</a>
-    </li>
-  </ul>
-
-</nav>
+  {% if indexPage >= 1 and indexPage <= 4058 %}
+    {% if indexPage ===  1 %}
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="/games?page=2">Next</a>
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+    {% if indexPage ===  4058 %}
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="/games?page={{ indexPage - 1 }}" tabindex="-1">Previous</a>
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+    {% if indexPage >= 2 and indexPage <= 4057 %}
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="/games?page={{ indexPage - 1 }}" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/games?page={{ indexPage + 1 }}" tabindex="-1">Next</a>
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+  {% else %}
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="/games?page=4058" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/games?page=1" tabindex="-1">Next</a>
+        </li>
+      </ul>
+    </nav>
+  {% endif %}
 {% else %}
-<nav aria-label="Page navigation example">
-
-  <ul class="pagination justify-content-center">
-
-    <li class="page-item">
-      <a class="page-link" href="/games?page=2">Next</a>
-    </li>
-  </ul>
-
-</nav>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="/games?page=2">Next</a>
+      </li>
+    </ul>
+  </nav>
 {% endif %}
 
-	    <h3>{{ indexPage }}</h3>
-
-
+	    <P align="right">{{ indexPage }}/4057</P>
 
 {% endblock %}

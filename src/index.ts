@@ -97,8 +97,11 @@ app.get("/games/:id", (req, res) => {
 // tt les jeux
 app.get("/games", (req, res) => {
   const stringQuery = req.query;
+  // console.log(stringQuery);
   const stringToNumber = Number(stringQuery.page);
+  const re = stringToNumber + 1;
   // console.log(stringToNumber);
+  // console.log(re);
 
   if (stringQuery.page) {
     request(
@@ -108,13 +111,14 @@ app.get("/games", (req, res) => {
           throw error;
         }
         const json = JSON.parse(body);
-        console.log(json.games);
-        console.log(stringQuery);
+        // console.log(json.games);
+        // console.log(stringQuery);
 
         res.render("games.njk", {
           games: json.games,
           queryStr: stringQuery,
           indexPage: stringToNumber,
+          indexPlus: re,
         });
       }
     );
@@ -124,8 +128,8 @@ app.get("/games", (req, res) => {
         throw error;
       }
       const json = JSON.parse(body);
-      console.log(json.games);
-      console.log(stringQuery);
+      // console.log(json.games);
+      // console.log(stringQuery);
 
       res.render("games.njk", {
         games: json.games,
